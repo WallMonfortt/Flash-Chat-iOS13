@@ -20,3 +20,4 @@ codi-fix-demo.xcodeproj/project.xcworkspace/xcuserdata/*
 ## Obj-C/Swift specific
 *.hmap
 Flash Chat iOS13/GoogleService-Info.plist
+**/ios/Runner/GoogleService-Info.plist
