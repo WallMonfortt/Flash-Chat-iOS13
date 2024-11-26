@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
                     self.showAuthenticationError(message: error.localizedDescription)
                 } else {
                     print("User created")
-                    self.performSegue(withIdentifier: "RegisterToChat", sender: self)
+                    self.performSegue(withIdentifier: K.registerSegue, sender: self)
                 }
             }
         }
