@@ -27,6 +27,8 @@ class ChatViewController: UIViewController {
         title = K.name
         
         navigationItem.hidesBackButton = true
+        
+        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
 
     }
     
@@ -52,17 +54,17 @@ extension ChatViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
 //        let message = messages[indexPath.row]
 //        cell.textLabel?.text = message.self.separateSecondaryViewController.body
-        cell.textLabel?.text = messages[indexPath.row].body
+        cell.label.text = messages[indexPath.row].body
         return cell
     }
 }
 
-//extension ChatViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print(indexPath.row)
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-//} // this method is used for interact with the rows in the table, when you select any of them
+extension ChatViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+} // this method is used for interact with the rows in the table, when you select any of them
