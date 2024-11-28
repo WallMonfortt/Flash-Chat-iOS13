@@ -37,8 +37,10 @@ class ChatViewController: UIViewController {
     }
     
     func loadMessages(){
-        messages = []
-        db.collection(K.FStore.collectionName).getDocuments { (querySnapshot, error) in
+        db.collection(K.FStore.collectionName)
+            .order(by: K.FStore.dateField)
+            .addSnapshotListener { (querySnapshot, error) in
+            self.messages = []
             if let e = error{
                 print("There was an error fetching messages: \(e)")
             }else{
@@ -68,7 +70,8 @@ class ChatViewController: UIViewController {
         if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email{
             db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: messageSender,
-                K.FStore.bodyField: messageBody
+                K.FStore.bodyField: messageBody,
+                K.FStore.dateField: Date().timeIntervalSince1970
             ]){(error) in
                 if let e = error{
                     print("There was an error saving the message: \(e)")
