@@ -11,6 +11,7 @@ import UIKit
 class MessageCell: UITableViewCell {
 
     @IBOutlet weak var messageBubbe: UIView!
+    @IBOutlet weak var leftImgeView: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var rightImageView: UIImageView!
     override func awakeFromNib() {
